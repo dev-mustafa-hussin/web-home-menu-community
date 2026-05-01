@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<templates>
-    <t t-name="web_home_menu_community.HomeMenu">
-        <div t-if="state.menuData.length" class="o_home_menu_wrapper" t-on-click="(ev) => onHomeClick(ev)">
+<templates xml:space="preserve">
+
+    <t t-name="web_home_menu_community.HomeMenu" owl="1">
+        <div class="o_home_menu_wrapper" t-on-click="onHomeMenuClick">
             <div class="o_home_menu_header">
-                <h2>Home Menu</h2>
-                <button class="btn btn-secondary" t-on-click="(ev) => toggleHome(ev)">
-                    <i t-attf-class="fa {{state.isVisible ? 'fa-arrow-up' : 'fa-arrow-down'}}"/>
-                    <t t-esc="state.isVisible ? 'Collapse' : 'Expand'"/>
+                <h2>&#127968; Home Menu</h2>
+                <button class="btn" t-on-click="toggleHomeMenu">
+                    <t t-if="homeMenuState.isVisible">
+                        <i class="fa fa-chevron-up"/> Collapse
+                    </t>
+                    <t t-else="">
+                        <i class="fa fa-chevron-down"/> Expand
+                    </t>
                 </button>
             </div>
-            <div t-if="state.isVisible" class="o_home_menu_grid">
-                <t t-foreach="state.menuData" t-as="menu">
-                    <div class="o_home_menu_card" t-on-click="(ev) => onMenuClick(ev, menu)">
+            <div t-if="homeMenuState.isVisible"
+                 class="o_home_menu_grid">
+                <t t-foreach="homeMenuState.menuItems" t-as="app" t-key="app.id">
+                    <div class="o_home_menu_card"
+                         t-on-click="(ev) => this.openApp(ev, app)">
                         <div class="o_home_menu_card_icon">
-                            <i t-if="menu.xmlId" t-attf-class="fa {{getMenuIcon(menu.xmlId)}}"/>
-                            <i t-else="" class="fa fa-folder"/>
+                            <i t-attf-class="fa {{ this.getMenuIcon(app.xmlId) }}"/>
                         </div>
-                        <div class="o_home_menu_card_title" t-esc="menu.name"/>
+                        <div class="o_home_menu_card_title" t-esc="app.name"/>
                     </div>
                 </t>
             </div>
         </div>
     </t>
+
 </templates>

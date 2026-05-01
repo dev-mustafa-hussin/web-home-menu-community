@@ -1,31 +1,34 @@
 /** @odoo-module **/
 
-import { Component } from "@odoo/owl";
-import { useService } from "@web/core/utils/hooks";
+import { Component, useState, onMounted, xml } from "@odoo/owl";
 import { registry } from "@web/core/registry";
+import { useService } from "@web/core/utils/hooks";
 
-export class HomeMenu extends Component {
+export class HomeMenuBar extends Component {
+    static template = "web_home_menu_community.HomeMenu";
+    static props = {};
+
     setup() {
-        super.setup();
         this.menuService = useService("menu");
-        this.state = { menuData: [], isVisible: true };
-        this.loadApps();
-    }
+        this.homeMenuState = useState({
+            isVisible: true,
+            menuItems: [],
+        });
 
-    loadApps() {
-        const apps = this.menuService.getApps();
-        this.state.menuData = apps.map((app) => ({
-            id: app.id,
-            name: app.name,
-            xmlId: app.xmlid || "",
-            actionID: app.actionID || null,
-        }));
+        onMounted(() => {
+            const apps = this.menuService.getApps();
+            this.homeMenuState.menuItems = apps.map((app) => ({
+                id: app.id,
+                name: app.name,
+                xmlId: app.xmlid || "",
+                actionID: app.actionID || null,
+            }));
+        });
     }
 
     getMenuIcon(xmlId) {
         const iconMap = {
             "base.menu_administration": "fa-cogs",
-            "base.menu_custom": "fa-puzzle-piece",
             "contacts.menu_contacts": "fa-address-book",
             "sale.sale_menu_root": "fa-shopping-cart",
             "account.menu_finance": "fa-calculator",
@@ -37,30 +40,34 @@ export class HomeMenu extends Component {
             "website.menu_website_configuration": "fa-globe",
             "point_of_sale.menu_point_of_sale_root": "fa-cash-register",
             "helpdesk.helpdesk_menu_root": "fa-life-ring",
+            "note.action_note_note": "fa-sticky-note",
+            "mail.action_discuss": "fa-comments",
         };
-        return iconMap[xmlId] || "fa-folder";
+        return iconMap[xmlId] || "fa-th-large";
     }
 
-    onHomeClick(ev) {
+    onHomeMenuClick(ev) {
         ev.stopPropagation();
     }
 
-    toggleHome(ev) {
+    toggleHomeMenu(ev) {
         ev.stopPropagation();
-        this.state.isVisible = !this.state.isVisible;
+        this.homeMenuState.isVisible = !this.homeMenuState.isVisible;
     }
 
-    onMenuClick(ev, menu) {
+    openApp(ev, app) {
         ev.stopPropagation();
-        if (!menu) return;
-        const href = menu.actionID
-            ? `/web#action=${menu.actionID}${menu.id ? `&menu_id=${menu.id}` : ""}`
-            : menu.id
-            ? `/web#menu_id=${menu.id}`
-            : null;
-        if (href) window.location.href = href;
+        if (!app) return;
+        const href = app.actionID
+            ? `/web#action=${app.actionID}&menu_id=${app.id}`
+            : `/web#menu_id=${app.id}`;
+        window.location.href = href;
     }
 }
 
-HomeMenu.template = "web_home_menu_community.HomeMenu";
-registry.category("actions").add("web_home_menu_community.home_menu", HomeMenu);
+// Register as systray item so it appears inside the web client
+registry.category("systray").add(
+    "web_home_menu_community.home_menu_bar",
+    { Component: HomeMenuBar },
+    { sequence: 1 }
+);
