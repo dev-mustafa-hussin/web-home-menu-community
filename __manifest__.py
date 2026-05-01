@@ -1,10 +1,10 @@
 {
     "name": "Web Home Menu",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "summary": "Home Menu for Odoo Community",
     "description": """
 Home Menu Module for Odoo Community Edition
-Replaces the default backend menu with a grid-based dashboard similar to Odoo Enterprise
+Replaces the default backend top bar with a grid-based app launcher similar to Odoo Enterprise
     """,
     "author": "3M Code Software",
     "website": "https://github.com/dev-mustafa-hussin/web-home-menu-community",
@@ -15,7 +15,6 @@ Replaces the default backend menu with a grid-based dashboard similar to Odoo En
         "web",
     ],
     "data": [
-        "views/home_page.xml",
         "security/groups.xml",
     ],
     "assets": {
