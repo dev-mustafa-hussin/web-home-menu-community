@@ -20,6 +20,8 @@ Replaces the default backend menu with a grid-based dashboard similar to Odoo En
     ],
     "assets": {
         "web.assets_backend": [
+            "web_home_menu_community/static/src/js/home_menu.js",
+            "web_home_menu_community/static/src/scss/home_menu.scss",
             "web_home_menu_community/static/src/xml/home_menu.xml",
         ],
     },
