@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_web_home_menu_community_user,web.home.menu.community.user,model_web_home_menu_community,group_home_menu_user,1,0,0,0

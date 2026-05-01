@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Action to open the Home Menu -->
+    <record id="action_home_menu" model="ir.actions.client">
+        <field name="name">Home Menu</field>
+        <field name="tag">web_home_menu_community.home_menu</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Replace the default web client action -->
+    <record id="web.action_client_dashboard_menu" model="ir.actions.client">
+        <field name="name">Dashboard Menu</field>
+        <field name="tag">web_home_menu_community.home_menu</field>
+    </record>
+
+    <!-- QWeb template for the home page -->
+    <template id="home_menu" name="Home Menu">
+        <t t-call="web.layout">
+            <t t-set="body_classname" t-value="'o_home_menu'"/>
+            <div class="o_home_menu_container">
+                <header class="o_home_menu_header">
+                    <h2>Home Menu</h2>
+                </header>
+                <main class="o_home_menu_grid">
+                    <t t-foreach="apps" t-as="app">
+                        <div class="o_home_menu_card" t-on-click="() => openApp(app)">
+                            <div class="o_home_menu_card_icon">
+                                <i t-attf-class="#{app.icon}"/>
+                            </div>
+                            <div class="o_home_menu_card_title" t-esc="app.name"/>
+                        </div>
+                    </t>
+                </main>
+            </div>
+        </t>
+    </template>
+</odoo>

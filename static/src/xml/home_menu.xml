@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-inherit="web.WebClient" t-inherit-mode="extension">
+        <xpath expr="//div[@t-ref='content']" position="before">
+            <div t-if="!hiddenMenus.length" class="o_home_menu_wrapper" t-on-click="onHomeClick">
+                <div class="o_home_menu_header">
+                    <h2>Home Menu</h2>
+                    <button class="btn btn-secondary" t-on-click="toggleHome">
+                        <i class="fa fa-arrow-up"/> Collapse
+                    </button>
+                </div>
+                <div class="o_home_menu_grid">
+                    <t t-foreach="menuData" t-as="menu">
+                        <div class="o_home_menu_card" t-on-click="(ev) => onMenuClick(ev, menu)">
+                            <div class="o_home_menu_card_icon">
+                                <i t-if="menu.xmlId" t-attf-class="fa {{getMenuIcon(menu.xmlId)}}"/>
+                                <i t-else="" class="fa fa-folder"/>
+                            </div>
+                            <div class="o_home_menu_card_title" t-esc="menu.name"/>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </t>
+</templates>
