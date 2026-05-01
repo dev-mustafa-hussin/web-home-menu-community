@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- Home Menu Group -->
+        <!-- Home Menu User Group -->
         <record id="group_home_menu_user" model="res.groups">
             <field name="name">Home Menu User</field>
-            <field name="category_id" ref="base.module_category_hidden"/>
         </record>
 
+        <!-- Home Menu Manager Group -->
         <record id="group_home_menu_manager" model="res.groups">
             <field name="name">Home Menu Manager</field>
             <field name="implied_ids" eval="[(4, ref('group_home_menu_user'))]"/>
-            <field name="category_id" ref="base.module_category_hidden"/>
         </record>
     </data>
 </odoo>
