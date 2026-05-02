@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Client Action for Home Menu -->
+    <record id="action_home_menu" model="ir.actions.client">
+        <field name="name">Home</field>
+        <field name="tag">web_home_menu_community.HomeMenu</field>
+    </record>
+
+    <!-- Override the default home action -->
+    <record id="base_setup.action_general_configuration" model="ir.actions.client" />
+
+    <!-- Add Home Menu to top navbar -->
+    <record id="web.action_client_base_menu" model="ir.actions.client">
+        <field name="tag">web_home_menu_community.HomeMenu</field>
+    </record>
+</odoo>

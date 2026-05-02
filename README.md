@@ -1,27 +1,18 @@
 # Web Home Menu Community
 
-Home Menu Module for Odoo Community Edition
-
-Replaces the default backend menu with a grid-based dashboard similar to Odoo Enterprise.
+A Home Menu module for Odoo 19 Community Edition that replicates the Enterprise home screen experience.
 
 ## Features
-
-- Grid-based home menu
-- App cards with icons and names
-- Compatible with Odoo 19 Community
+- Full-screen grid of installed apps
+- Search/filter apps
+- Colorful app icons with initials fallback
+- Smooth hover animations
+- Replaces default backend home screen
 
 ## Installation
-
-1. Copy the module to your Odoo addons directory
-2. Update the module list
-3. Install the module from Apps
+1. Copy folder to your addons path
+2. Update Apps List
+3. Install 'Web Home Menu'
 
 ## Author
-
-**3M Code Software**  
-Website: https://github.com/dev-mustafa-hussin  
-Support: support@3mcode.com
-
-## License
-
-LGPL-3
+3M Code Software

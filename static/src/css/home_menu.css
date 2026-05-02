@@ -1,0 +1,116 @@
+.o_home_menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: #f8f9fa;
+    padding: 40px 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Search */
+.o_home_menu_search {
+    position: relative;
+    margin-bottom: 48px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.o_home_menu_search_input {
+    width: 100%;
+    padding: 14px 48px 14px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.o_home_menu_search_input:focus {
+    border-color: #875A7B;
+    box-shadow: 0 4px 16px rgba(135,90,123,0.15);
+}
+
+.o_home_menu_search_icon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 16px;
+}
+
+/* Grid */
+.o_home_menu_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 32px;
+    width: 100%;
+    max-width: 900px;
+    justify-items: center;
+}
+
+/* App Card */
+.o_home_menu_app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 110px;
+}
+
+.o_home_menu_app:hover {
+    transform: translateY(-6px);
+}
+
+.o_home_menu_app_icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.o_home_menu_app_icon img {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.o_home_menu_app_initials {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.o_home_menu_app_name {
+    font-size: 13px;
+    color: #444;
+    text-align: center;
+    font-weight: 500;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Empty State */
+.o_home_menu_empty {
+    text-align: center;
+    color: #aaa;
+    margin-top: 60px;
+}
+
+.o_home_menu_empty p {
+    margin-top: 16px;
+    font-size: 18px;
+}

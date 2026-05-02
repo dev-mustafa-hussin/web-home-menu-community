@@ -1,32 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-
-    <t t-name="web_home_menu_community.HomeMenu" owl="1">
-        <div class="o_home_menu_wrapper" t-on-click="onHomeMenuClick">
-            <div class="o_home_menu_header">
-                <h2>&#127968; Home Menu</h2>
-                <button class="btn" t-on-click="toggleHomeMenu">
-                    <t t-if="homeMenuState.isVisible">
-                        <i class="fa fa-chevron-up"/> Collapse
-                    </t>
-                    <t t-else="">
-                        <i class="fa fa-chevron-down"/> Expand
-                    </t>
-                </button>
+    <t t-name="web_home_menu_community.HomeMenu">
+        <div class="o_home_menu">
+            <!-- Search Bar -->
+            <div class="o_home_menu_search">
+                <input
+                    type="text"
+                    class="o_home_menu_search_input"
+                    placeholder="Search apps..."
+                    t-model="state.filter"
+                />
+                <i class="fa fa-search o_home_menu_search_icon"/>
             </div>
-            <div t-if="homeMenuState.isVisible"
-                 class="o_home_menu_grid">
-                <t t-foreach="homeMenuState.menuItems" t-as="app" t-key="app.id">
-                    <div class="o_home_menu_card"
-                         t-on-click="(ev) => this.openApp(ev, app)">
-                        <div class="o_home_menu_card_icon">
-                            <i t-attf-class="fa {{ this.getMenuIcon(app.xmlId) }}"/>
+
+            <!-- Apps Grid -->
+            <div class="o_home_menu_grid">
+                <t t-foreach="filteredApps" t-as="app" t-key="app.id">
+                    <div class="o_home_menu_app" t-on-click="() => this.openApp(app)">
+                        <div class="o_home_menu_app_icon" t-attf-style="background-color: {{ getColor(app_index) }};">
+                            <t t-if="app.webIconData">
+                                <img t-att-src="app.webIconData" t-att-alt="app.name" />
+                            </t>
+                            <t t-else="">
+                                <span class="o_home_menu_app_initials">
+                                    <t t-esc="getInitials(app.name)" />
+                                </span>
+                            </t>
                         </div>
-                        <div class="o_home_menu_card_title" t-esc="app.name"/>
+                        <div class="o_home_menu_app_name" t-esc="app.name" />
                     </div>
                 </t>
             </div>
+
+            <!-- Empty State -->
+            <t t-if="filteredApps.length === 0">
+                <div class="o_home_menu_empty">
+                    <i class="fa fa-search fa-3x"/>
+                    <p>No apps found</p>
+                </div>
+            </t>
         </div>
     </t>
-
 </templates>
